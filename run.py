@@ -7,7 +7,6 @@ class BattleShip:
     def __init__(self):
         self.Field_Size = ''
         self.Ships_Qt = ''
-        #self.Ships_Types = []
         self.Player_Board = []
         self.PC_Board = []
         print("Works")
@@ -74,6 +73,13 @@ class BattleShip:
         else:
             print("Computer missed!\n")
 
+    def check_winner(self, board):
+        for row in board:
+            for element in row:
+                if element == "S":
+                    return False
+        return True
+
     def play_game(self):
         self.Field_Size = int(input("Enter grid size:\n"))
         self.Ships_Qt = int(input("Enter ships quantity:\n"))
@@ -96,6 +102,14 @@ class BattleShip:
                 x, y = self.get_pc_guess()
                 self.pc_attacks(x,y)
                 player_turn = 'P'
+
+            #Check if there's a winner
+            if self.check_winner(self.PC_Board):
+                print("You Win!")
+                break
+            elif self.check_winner(self.Player_Board):
+                print("You lose!")
+                break
 
 
 battle = BattleShip()
