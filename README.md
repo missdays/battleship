@@ -36,9 +36,11 @@ In the game, the goal is to discover the computer's ships on its board while the
 Throughout the game, the player can't view the computer's board, only the "O" symbols. Only at the very end can the player see the computer's board.
 
 The "X" stands for a ship that the player has successfully sunk from the computer. "S" represents the player's ships that are still remaining. 
+
 ![GameLogic1](img/GameLogic1.jpeg)
 
 To avoid the player from selecting the same coordinates, they will be able to view their previous guesses on the opponent's boards. 
+
 ![GameLogic2](img/GameLogic2.jpeg)
 
 ## Features
