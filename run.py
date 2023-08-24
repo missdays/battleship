@@ -9,6 +9,9 @@ class BattleShip:
         self.Ships_Qt = ''
         self.Player_Board = []
         self.PC_Board = []
+        self.User_Name = ''
+        self.User_Score = 0
+        self.PC_Score = 0
         print("Works")
 
     def create_board(self):
@@ -63,6 +66,7 @@ class BattleShip:
             print("Congratulations! You sunk the opponent's ship!\n")
             #must be replaced with board that will be shown to user
             self.PC_Board[x][y] = 'X'
+            self.User_Score += 1
         else:
             print("You missed!")
 
@@ -70,6 +74,7 @@ class BattleShip:
         if self.Player_Board[x][y] == 'S':
             print("Computer found one of your ships!\n")
             self.Player_Board[x][y] = 'X'
+            self.PC_Score += 1
         else:
             print("Computer missed!\n")
 
@@ -80,7 +85,19 @@ class BattleShip:
                     return False
         return True
 
+    def print_score(self):
+        print("#### SCORE ###\n")
+        print(f'{self.User_Name}: {self.User_Score}\n')
+        print(f'Computer: {self.PC_Score}\n')
+
     def play_game(self):
+        user_name = input("Enter your name:\n")
+
+        if user_name == "":
+            self.User_Name = "Player"
+        else:
+            self.User_Name = user_name
+
         self.Field_Size = int(input("Enter grid size:\n"))
         self.Ships_Qt = int(input("Enter ships quantity:\n"))
         self.create_board()
@@ -94,7 +111,9 @@ class BattleShip:
         #PC = C , PLAYER = P
         player_turn = 'P'
         while True:
+            
             if player_turn == 'P':
+                self.print_score()
                 x, y = self.get_user_guess()
                 self.user_attacks(x,y)
                 player_turn = 'C'
@@ -106,9 +125,11 @@ class BattleShip:
             #Check if there's a winner
             if self.check_winner(self.PC_Board):
                 print("You Win!")
+                self.print_score()
                 break
             elif self.check_winner(self.Player_Board):
                 print("You lose!")
+                self.print_score()
                 break
 
 
