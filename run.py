@@ -5,6 +5,17 @@ class BattleShip:
     """
 
     def __init__(self):
+        self.initialize_properties()
+
+    def restart_game(self):
+        choice = input("Do you want to play again? (yes/no): ").lower()
+        if choice == "yes":
+            self.initialize_properties()
+            self.play_game()
+        else:
+            print("Thanks for playing!")
+
+    def initialize_properties(self):
         self.Field_Size = ''
         self.Ships_Qt = ''
         self.Player_Board = []
@@ -13,7 +24,6 @@ class BattleShip:
         self.User_Name = ''
         self.User_Score = 0
         self.PC_Score = 0
-        print("Works")
 
     def create_board(self):
         for _ in range(self.Field_Size):
@@ -26,19 +36,19 @@ class BattleShip:
             self.PC_Board_Display.append(['O'] * self.Field_Size)
     
     def print_player_board(self):
-        """Print the game board."""
+        """Print the player's board."""
         print("####### PLAYER BOARD #######\n")
         for row in self.Player_Board:
             print(" ".join(row))
     
     def print_PC_board(self):
-        """Print the game board."""
+        """Print the computer's board."""
         print("####### COMPUTER BOARD #######\n")
         for row in self.PC_Board:
             print(" ".join(row))
 
     def print_PC_board_display(self):
-        """Print the game board."""
+        """Print the computer's board without showing remaining ships."""
         print("####### COMPUTER BOARD #######\n")
         for row in self.PC_Board_Display:
             print(" ".join(row))
@@ -100,7 +110,7 @@ class BattleShip:
         print(f'{self.User_Name}: {self.User_Score}\n')
         print(f'Computer: {self.PC_Score}\n')
 
-    def play_game(self):
+    def load_game(self):
         user_name = input("Enter your name:\n")
 
         if user_name == "":
@@ -108,8 +118,14 @@ class BattleShip:
         else:
             self.User_Name = user_name
 
-        self.Field_Size = int(input("Enter grid size:\n"))
-        self.Ships_Qt = int(input("Enter ships quantity:\n"))
+        while True:
+            try:
+                self.Field_Size = int(input("Enter grid size: (Numbers only)\n"))
+                self.Ships_Qt = int(input("Enter ships quantity: (Numbers only)\n"))
+                break
+            except ValueError:
+                print("Please enter a valid number.\n")
+                
         self.create_board()
 
         #Place player's ships
@@ -118,7 +134,10 @@ class BattleShip:
         #Place computer's ships
         self.place_ships(self.PC_Board)
 
-        self.print_PC_board()
+    def play_game(self):
+
+        self.load_game()
+
         #PC = C , PLAYER = P
         player_turn = 'P'
         while True:
@@ -137,16 +156,15 @@ class BattleShip:
 
             #Check if there's a winner
             if self.check_winner(self.PC_Board):
-                print("You Win!")
+                print("You Win!\n")
                 self.print_score()
+                self.restart_game()
                 break
             elif self.check_winner(self.Player_Board):
-                print("You lose!")
+                print("You lose!\n")
                 self.print_score()
+                self.restart_game()
                 break
-
 
 battle = BattleShip()
 battle.play_game()
-battle.print_player_board()
-battle.print_PC_board()
