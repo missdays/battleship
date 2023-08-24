@@ -9,6 +9,7 @@ class BattleShip:
         self.Ships_Qt = ''
         self.Player_Board = []
         self.PC_Board = []
+        self.PC_Board_Display = []
         self.User_Name = ''
         self.User_Score = 0
         self.PC_Score = 0
@@ -20,17 +21,26 @@ class BattleShip:
 
         for _ in range(self.Field_Size):
             self.PC_Board.append(['O'] * self.Field_Size)
+
+        for _ in range(self.Field_Size):
+            self.PC_Board_Display.append(['O'] * self.Field_Size)
     
     def print_player_board(self):
         """Print the game board."""
-        print("####### PLAYER BOARD #######")
+        print("####### PLAYER BOARD #######\n")
         for row in self.Player_Board:
             print(" ".join(row))
     
     def print_PC_board(self):
         """Print the game board."""
-        print("####### COMPUTER BOARD #######")
+        print("####### COMPUTER BOARD #######\n")
         for row in self.PC_Board:
+            print(" ".join(row))
+
+    def print_PC_board_display(self):
+        """Print the game board."""
+        print("####### COMPUTER BOARD #######\n")
+        for row in self.PC_Board_Display:
             print(" ".join(row))
 
     def place_ships(self, board):
@@ -64,8 +74,8 @@ class BattleShip:
     def user_attacks(self, x, y):
         if self.PC_Board[x][y] == 'S':
             print("Congratulations! You sunk the opponent's ship!\n")
-            #must be replaced with board that will be shown to user
             self.PC_Board[x][y] = 'X'
+            self.PC_Board_Display[x][y] = 'X'
             self.User_Score += 1
         else:
             print("You missed!")
@@ -108,12 +118,15 @@ class BattleShip:
         #Place computer's ships
         self.place_ships(self.PC_Board)
 
+        self.print_PC_board()
         #PC = C , PLAYER = P
         player_turn = 'P'
         while True:
             
             if player_turn == 'P':
                 self.print_score()
+                self.print_PC_board_display()
+                self.print_player_board()
                 x, y = self.get_user_guess()
                 self.user_attacks(x,y)
                 player_turn = 'C'
