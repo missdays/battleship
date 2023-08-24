@@ -7,7 +7,7 @@ This Battleship game is in Python designed for the Code Institute mock terminal 
 ![Initial image](img/initialimg.png)
 ## How to play
 
-The goal of this game is to sink the opponent's battleship that is hidden. 
+The goal of this game is to sink the opponent's ships that is hidden. 
 
 Players can customise the grid size and decide the number of ships they'd like to have and add their username. 
 
@@ -49,8 +49,7 @@ To avoid the player from selecting the same coordinates, they will be able to vi
 - Accept user input
 - Player can select board size and number of ships
 - Show score and player's name
-- Must enter numbers only 
-- Can enter the same guess 
+- Must enter numbers only
 - Player cannot see where the computer's ships are
 
 
@@ -80,7 +79,10 @@ def initialize_properties(self):
 ## Testing 
 I have manually tested this project by doing the following
 - Passed the code through a PEP8 Python Validator and no errors were returned
+
 ![Validator](img/Validator.png)
+
+- Tested in my local terminal and the Code Institute Heroku terminal
 
 ### Bugs and Challenge
 
