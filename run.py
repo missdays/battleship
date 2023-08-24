@@ -1,4 +1,6 @@
 import random
+
+
 class BattleShip:
     """
     Battle between player and computer.
@@ -34,13 +36,13 @@ class BattleShip:
 
         for _ in range(self.Field_Size):
             self.PC_Board_Display.append(['O'] * self.Field_Size)
-    
+
     def print_player_board(self):
         """Print the player's board."""
         print("####### PLAYER BOARD #######\n")
         for row in self.Player_Board:
             print(" ".join(row))
-    
+
     def print_PC_board(self):
         """Print the computer's board."""
         print("####### COMPUTER BOARD #######\n")
@@ -80,7 +82,7 @@ class BattleShip:
         x = random.randint(0, self.Field_Size - 1)
         y = random.randint(0, self.Field_Size - 1)
         return x, y
-    
+
     def user_attacks(self, x, y):
         if self.PC_Board[x][y] == 'S':
             print("Congratulations! You sunk the opponent's ship!\n")
@@ -120,41 +122,41 @@ class BattleShip:
 
         while True:
             try:
-                self.Field_Size = int(input("Enter grid size: (Numbers only)\n"))
-                self.Ships_Qt = int(input("Enter ships quantity: (Numbers only)\n"))
+                self.Field_Size = int(input("Enter grid size:\n"))
+                self.Ships_Qt = int(input("Enter ships quantity:\n"))
                 break
             except ValueError:
                 print("Please enter a valid number.\n")
-                
+
         self.create_board()
 
-        #Place player's ships
+        # Place player's ships
         self.place_ships(self.Player_Board)
-        
-        #Place computer's ships
+
+        # Place computer's ships
         self.place_ships(self.PC_Board)
 
     def play_game(self):
 
         self.load_game()
 
-        #PC = C , PLAYER = P
+        # PC = C , PLAYER = P
         player_turn = 'P'
         while True:
-            
+
             if player_turn == 'P':
                 self.print_score()
                 self.print_PC_board_display()
                 self.print_player_board()
                 x, y = self.get_user_guess()
-                self.user_attacks(x,y)
+                self.user_attacks(x, y)
                 player_turn = 'C'
             else:
                 x, y = self.get_pc_guess()
-                self.pc_attacks(x,y)
+                self.pc_attacks(x, y)
                 player_turn = 'P'
 
-            #Check if there's a winner
+            # Check if there's a winner
             if self.check_winner(self.PC_Board):
                 print("You Win!\n")
                 self.print_score()
@@ -165,6 +167,7 @@ class BattleShip:
                 self.print_score()
                 self.restart_game()
                 break
+
 
 battle = BattleShip()
 battle.play_game()
