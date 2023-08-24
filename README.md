@@ -4,7 +4,7 @@ Written by Dyeneffer Dias
 
 This Battleship game is in Python designed for the Code Institute mock terminal on Heroku.
 
-![Initial image]()
+![Initial image](img/initialimg.png)
 ## How to play
 
 The goal of this game is to sink the opponent's battleship that is hidden. 
@@ -80,7 +80,10 @@ I have manually tested this project by doing the following
 - Passed the code through a PEP8 Python Validator and no errors were returned
 ![Validator](img/Validator.png)
 
-### Bugs
+### Bugs and Challenge
+
+Solved bugs:
+- In the past, I didn't provide a warning when players included letters in their input, resulting in errors. Now, I've introduced a feature to notify players to input only numbers and prevent such errors.
 
 Remaining bugs:
 - player can enter the same guess twice
