@@ -75,11 +75,13 @@ def initialize_properties(self):
 ```
 ## Testing 
 I have manually tested this project by doing the following
-- Passed the code through a PEP8 Python Validator and no errors were returned
+- I have passed the code through a PEP8 Python Validator and fixed the errors returned
+- I have conducted tests on the game by inputting negative numbers, alphanumeric characters, and values beyond the specified range, including special characters, to validate the effectiveness of the error handling mechanism.
+- I have manually checked that the grid and the number of ships match the user's input.
+- I have played the game many times in different situations to make sure everything works smoothly.
+- I have tested in my local terminal and the Code Institute Heroku terminal
 
 ![Validator](img/Validator.png)
-
-- Tested in my local terminal and the Code Institute Heroku terminal
 
 ### Bugs and Challenge
 
