@@ -120,13 +120,31 @@ class BattleShip:
         else:
             self.User_Name = user_name
 
+        #Loop to read the field size
         while True:
             try:
-                self.Field_Size = int(input("Enter grid size:\n"))
-                self.Ships_Qt = int(input("Enter ships quantity:\n"))
+                self.Field_Size = int(input("Enter grid size: (Min 4)\n"))
+                if self.Field_Size < 4:
+                    print("Please enter a value greater than 4\n")
+                    continue
+
                 break
             except ValueError:
                 print("Please enter a valid number.\n")
+
+        #Loop to read ships quantity
+        while True:
+            try:
+                self.Ships_Qt = int(input("Enter ships quantity: (Min 1)\n"))
+                
+                if self.Ships_Qt <= 0:
+                    print("Please enter a value greater than 1\n")
+                    continue
+
+                break
+            except ValueError:
+                print("Please enter a valid number.\n")
+
 
         self.create_board()
 
