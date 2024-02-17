@@ -5,27 +5,25 @@ Written by Dyeneffer Dias
 This Battleship game is in Python designed for the Code Institute mock terminal on Heroku.
 
 ![Initial image](img/initialimg.png)
+
 ## How to play
 
-The goal of this game is to sink the opponent's ships that is hidden. 
+- The goal of this game is to sink the opponent's ships that is hidden. 
 
-Players can customise the grid size and decide the number of ships they'd like to have and add their username. 
+- Players can customise the grid size and decide the number of ships they'd like to have and add their username. 
 
-The player has to guess where the opponent's ships are by choosing a row and a column each turn (using numbers only). 
+- The player has to guess where the opponent's ships are by choosing a row and a column each turn (using numbers only). So does the computer to sink the player's ships. 
 
-So does the computer to sink the player's ships. 
+- When the player inputs a letter instead of a number, a message will display, instructing them to "please enter a valid number."
+- When the player inputs a number below 4 for the grid, a message will display, instructing them to "please enter a number greater than 4."
+- When the player inputs a number below 1 for the ship, a message will display, instructing them to "please enter a number greater than 1."
+- If the player inputs coordinates that are outside the grid, a message will pop up to advise the player: "Please enter valid coordinates."
 
-When the player inputs a letter instead of a number, a message will display, instructing them to "please enter a valid number."
-
-If the player inputs coordinates that are outside the grid, a message will pop up to advise the player: "Please enter valid coordinates."
-
-The board consists of "O" symbols, which represent slots that might either contain the enemy's hidden ship or be empty spaces. 
-
-When the player discovers the opponent's ships, a message pops up, indicating "You've sunk the opponent's ship." If they miss, a message reads "You missed!"
-
-If the computer locates one of the player's ships, a message displays: "Computer found one of your ships!" Otherwise, it shows "Computer missed!"
-
-At the game's conclusion, if either the player or the computer manages to sink all ships, a message declares "You win" or "You lose," along with the final score.
+### The board
+- The board consists of "O" symbols, which represent slots that might either contain the enemy's hidden ship or be empty spaces. 
+- When the player discovers the opponent's ships, a message pops up, indicating "You've sunk the opponent's ship." If they miss, a message reads "You missed!"
+- If the computer locates one of the player's ships, a message displays: "Computer found one of your ships!" Otherwise, it shows "Computer missed!"
+- At the game's conclusion, if either the player or the computer manages to sink all ships, a message declares "You win" or "You lose," along with the final score.
 
 After either achieving victory or defeat, the program asks whether the player wishes to play again, allowing them to input "yes" or "no." Opting for "yes" initiates a new game, while selecting "no" triggers a message that reads "Thanks for playing," followed by the program's closure.
 
@@ -88,23 +86,32 @@ I have manually tested this project by doing the following
 
 Solved bugs:
 - In the past, I didn't provide a warning when players included letters in their input, resulting in errors. Now, I've introduced a feature to notify players to input only numbers and prevent such errors.
+- In the past, the players could have added negative numbers and even letters, now the player has to enter a minimum of 4 grid size and a minimum of 1 ship quantity.
 
 Remaining bugs:
-- player can enter the same guess twice
 - Include a greater number of ships than the board can hold.
 
 
-## Deployment
-This project was deployed using Code Institute's mock terminal for Heroku
-- Steps for deployment:
-Clone the repository 
-Create Heroku account 
-Set buildbacks to python and NodeJS in that order
-Link Heroku account to the repository
-Click on Deploy
+## Deployment to Heroku
+1. **Create an account and verify it:**
+   - Sign up for a Heroku account and verify your email address.
+2. **Create a new app:**
+   - Navigate to your Heroku dashboard and create a new app with a unique name.
+3. **Enable GitHub integration:**
+   - In your app's dashboard, go to the Deploy tab.
+   - In the Deployment method section, enable GitHub integration by clicking on "Connect to GitHub".
+4. **Select your repository:**
+   - Start typing your project repository name into the search box and click Search.
+   - A list of repositories from your GitHub account should appear.
+   - Click on the GitHub repository you want to deploy from.  
+5. **Initiate deployment:**
+   - Scroll to the bottom of the page and click "Deploy Branch" to start a manual deployment of the main branch.
+6. **View your deployed project:**
+   - Once the deployment process is complete, click on "Open app" to view your deployed project.
 
 
 
 ## Credits 
 - Code Institute for READ.ME file 
-- Code Institute for deployment terminal 
+- Code Institute for deployment terminal
+- Special thanks to Erik for his ongoing support and encouragement throughout the development process.
