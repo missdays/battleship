@@ -10,6 +10,7 @@ class BattleShip:
         self.initialize_properties()
 
     def restart_game(self):
+        self.print_divider()
         choice = input("Do you want to play again? (yes/no): ").lower()
         if choice == "yes":
             self.initialize_properties()
@@ -39,19 +40,19 @@ class BattleShip:
 
     def print_player_board(self):
         """Print the player's board."""
-        print("####### PLAYER BOARD #######\n")
+        print("\n####### PLAYER BOARD #######")
         for row in self.Player_Board:
             print(" ".join(row))
 
     def print_PC_board(self):
         """Print the computer's board."""
-        print("####### COMPUTER BOARD #######\n")
+        print("####### COMPUTER BOARD #######")
         for row in self.PC_Board:
             print(" ".join(row))
 
     def print_PC_board_display(self):
         """Print the computer's board without showing remaining ships."""
-        print("####### COMPUTER BOARD #######\n")
+        print("####### COMPUTER BOARD #######")
         for row in self.PC_Board_Display:
             print(" ".join(row))
 
@@ -69,7 +70,7 @@ class BattleShip:
         """Get the user's guess for row and column."""
         while True:
             try:
-                x = int(input(f"Guess row (0-{self.Field_Size - 1}): "))
+                x = int(input(f"\nGuess row (0-{self.Field_Size - 1}): "))
                 y = int(input(f"Guess column (0-{self.Field_Size - 1}): "))
                 if 0 <= x < self.Field_Size and 0 <= y < self.Field_Size:
                     return x, y
@@ -85,12 +86,12 @@ class BattleShip:
 
     def user_attacks(self, x, y):
         if self.PC_Board[x][y] == 'S':
-            print("Congratulations! You sunk the opponent's ship!\n")
+            print("\nCongratulations! You sunk the opponent's ship!")
             self.PC_Board[x][y] = 'X'
             self.PC_Board_Display[x][y] = 'X'
             self.User_Score += 1
         else:
-            print("You missed!")
+            print("\nYou missed!")
 
     def pc_attacks(self, x, y):
         if self.Player_Board[x][y] == 'S':
@@ -99,6 +100,7 @@ class BattleShip:
             self.PC_Score += 1
         else:
             print("Computer missed!\n")
+        self.print_divider()
 
     def check_winner(self, board):
         for row in board:
@@ -108,12 +110,12 @@ class BattleShip:
         return True
 
     def print_score(self):
-        print("#### SCORE ###\n")
-        print(f'{self.User_Name}: {self.User_Score}\n')
+        print("#### SCORE ####\n")
+        print(f'{self.User_Name}: {self.User_Score}')
         print(f'Computer: {self.PC_Score}\n')
 
     def load_game(self):
-        user_name = input("Enter your name:\n")
+        user_name = input("Enter your name: ")
 
         if user_name == "":
             self.User_Name = "Player"
@@ -121,10 +123,12 @@ class BattleShip:
             self.User_Name = user_name
 
         # Read the field size
-        self.Field_Size = self.get_valid_integer_input("Enter grid size: (Min 4)\n", 4)
+        self.Field_Size = self.get_valid_integer_input("\nEnter grid size (Min 4): ", 4)
 
         # Read the number of ships
-        self.Ships_Qt = self.get_valid_integer_input("Enter ships quantity: (Min 1)\n", 1)
+        self.Ships_Qt = self.get_valid_integer_input("\nEnter ships quantity (Min 1): ", 1)
+
+        self.print_divider()
 
         self.create_board()
 
@@ -140,11 +144,15 @@ class BattleShip:
             try:
                 value = int(input(prompt))
                 if value < min_value:
-                    print(f"Please enter a number greater than {min_value}")
+                    print(f"Please enter a number greater than {min_value}\n")
                 else:
                     return value
             except ValueError:
-                print("Please enter a valid number.")
+                print("Please enter a valid number.\n")
+
+    @staticmethod
+    def print_divider():
+        print("-------------------------------------------------\n")
 
     def play_game(self):
 
