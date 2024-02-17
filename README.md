@@ -14,9 +14,8 @@ This Battleship game is in Python designed for the Code Institute mock terminal 
 
 - The player has to guess where the opponent's ships are by choosing a row and a column each turn (using numbers only). So does the computer to sink the player's ships. 
 
-- When the player inputs a letter instead of a number, a message will display, instructing them to "please enter a valid number."
-- When the player inputs a number below 4 for the grid, a message will display, instructing them to "please enter a number greater than 4."
-- When the player inputs a number below 1 for the ship, a message will display, instructing them to "please enter a number greater than 1."
+- When the player inputs a letter instead of a number or a number below 4 for the grid, a message will display, instructing them to "please insert a valid number greater than 4."
+- When the player inputs a number below 1 or above the maximum (60% of grid dimension - calculation is done for player and shown) for the ship, a message will display, instructing them to "Please insert a valid number within 1 and {max number}."
 - If the player inputs coordinates that are outside the grid, a message will pop up to advise the player: "Please enter valid coordinates."
 
 ### The board
@@ -25,7 +24,9 @@ This Battleship game is in Python designed for the Code Institute mock terminal 
 - If the computer locates one of the player's ships, a message displays: "Computer found one of your ships!" Otherwise, it shows "Computer missed!"
 - At the game's conclusion, if either the player or the computer manages to sink all ships, a message declares "You win" or "You lose," along with the final score.
 
-After either achieving victory or defeat, the program asks whether the player wishes to play again, allowing them to input "yes" or "no." Opting for "yes" initiates a new game, while selecting "no" triggers a message that reads "Thanks for playing," followed by the program's closure.
+After either achieving victory or defeat, the program asks whether the player wishes to play again, allowing them to input "yes" or "no." Opting for "yes" initiates a new game, while selecting "no" triggers a message that reads "Thanks for playing" followed by the program's closure.
+
+![Board Instruction](img/number-grid-size.png)
 
 ## Logic of the game
 
@@ -53,8 +54,6 @@ To avoid the player from selecting the same coordinates, they will be able to vi
 
 ### Future Features
 - Introduce ships with varying sizes, introducing different levels of difficulty.
-
-- Enforce a constraint on the number of ships entered to ensure they fit within the board dimensions.
 
 - Include an option for multiplayer, allowing interaction with another player instead of solely engaging with the computer.
 
@@ -87,9 +86,10 @@ I have manually tested this project by doing the following
 Solved bugs:
 - In the past, I didn't provide a warning when players included letters in their input, resulting in errors. Now, I've introduced a feature to notify players to input only numbers and prevent such errors.
 - In the past, the players could have added negative numbers and even letters, now the player has to enter a minimum of 4 grid size and a minimum of 1 ship quantity.
+- In the past, the players could enter any ship quantity, now there is a limit on the number of ships entered to ensure they fit within the board dimensions (60% of grid size).
 
 Remaining bugs:
-- Include a greater number of ships than the board can hold.
+- None
 
 
 ## Deployment to Heroku
