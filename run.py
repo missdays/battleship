@@ -120,31 +120,11 @@ class BattleShip:
         else:
             self.User_Name = user_name
 
-        #Loop to read the field size
-        while True:
-            try:
-                self.Field_Size = int(input("Enter grid size: (Min 4)\n"))
-                if self.Field_Size < 4:
-                    print("Please enter a value greater than 4\n")
-                    continue
+        # Read the field size
+        self.Field_Size = self.get_valid_integer_input("Enter grid size: (Min 4)\n", 4)
 
-                break
-            except ValueError:
-                print("Please enter a valid number.\n")
-
-        #Loop to read ships quantity
-        while True:
-            try:
-                self.Ships_Qt = int(input("Enter ships quantity: (Min 1)\n"))
-                
-                if self.Ships_Qt <= 0:
-                    print("Please enter a value greater than 1\n")
-                    continue
-
-                break
-            except ValueError:
-                print("Please enter a valid number.\n")
-
+        # Read the number of ships
+        self.Ships_Qt = self.get_valid_integer_input("Enter ships quantity: (Min 1)\n", 1)
 
         self.create_board()
 
@@ -153,6 +133,18 @@ class BattleShip:
 
         # Place computer's ships
         self.place_ships(self.PC_Board)
+
+    @staticmethod
+    def get_valid_integer_input(prompt, min_value):
+        while True:
+            try:
+                value = int(input(prompt))
+                if value < min_value:
+                    print(f"Please enter a number greater than {min_value}")
+                else:
+                    return value
+            except ValueError:
+                print("Please enter a valid number.")
 
     def play_game(self):
 
