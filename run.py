@@ -138,22 +138,6 @@ class BattleShip:
         # Place computer's ships
         self.place_ships(self.PC_Board)
 
-    @staticmethod
-    def get_valid_integer_input(prompt, min_value):
-        while True:
-            try:
-                value = int(input(prompt))
-                if value < min_value:
-                    print(f"Please enter a number greater than {min_value}\n")
-                else:
-                    return value
-            except ValueError:
-                print("Please enter a valid number.\n")
-
-    @staticmethod
-    def print_divider():
-        print("-------------------------------------------------\n")
-
     def play_game(self):
 
         self.load_game()
@@ -186,6 +170,22 @@ class BattleShip:
                 self.restart_game()
                 break
 
+    #Static methods section
+    @staticmethod
+    def get_valid_integer_input(prompt, min_value):
+        while True:
+            try:
+                value = int(input(prompt))
+                if value < min_value:
+                    print(f"Please enter a number greater than {min_value}\n")
+                else:
+                    return value
+            except ValueError:
+                print("Please enter a valid number.\n")
+
+    @staticmethod
+    def print_divider():
+        print("-------------------------------------------------\n")
 
 battle = BattleShip()
 battle.play_game()
