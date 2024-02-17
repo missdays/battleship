@@ -123,10 +123,15 @@ class BattleShip:
             self.User_Name = user_name
 
         # Read the field size
-        self.Field_Size = self.get_valid_integer_input("\nEnter grid size (Min 4): ", 4)
+        field_size = self.get_valid_integer_input("\nEnter grid size", 4)
+
+        self.Field_Size = field_size
+
+        # Max ship number is 60% of total grid size
+        max_ship_qt = int((field_size ** 2) * 0.6)
 
         # Read the number of ships
-        self.Ships_Qt = self.get_valid_integer_input("\nEnter ships quantity (Min 1): ", 1)
+        self.Ships_Qt = self.get_valid_integer_input("\nEnter ships quantity", 1, max_ship_qt)
 
         self.print_divider()
 
@@ -172,16 +177,24 @@ class BattleShip:
 
     #Static methods section
     @staticmethod
-    def get_valid_integer_input(prompt, min_value):
+    def get_valid_integer_input(prompt, min_value, max_value=None):
         while True:
             try:
-                value = int(input(prompt))
-                if value < min_value:
-                    print(f"Please enter a number greater than {min_value}\n")
+                if max_value is not None:
+                    value = int(input(f"{prompt} (Min {min_value}, Max {max_value}): "))
+                    if value < min_value or value > max_value:
+                        raise ValueError
                 else:
-                    return value
+                    value = int(input(f"{prompt} (Min {min_value}): "))
+                    if value < min_value:
+                        raise ValueError
+                
+                return value
             except ValueError:
-                print("Please enter a valid number.\n")
+                if max_value is not None:
+                    print(f"Please insert a valid number within {min_value}-{max_value}")
+                else:
+                    print(f"Please insert a valid number greater than {min_value}")
 
     @staticmethod
     def print_divider():
