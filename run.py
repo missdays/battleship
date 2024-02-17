@@ -123,15 +123,17 @@ class BattleShip:
             self.User_Name = user_name
 
         # Read the field size
-        field_size = self.get_valid_integer_input("\nEnter grid size", 4)
+        field_size = self.get_integer_input("\nEnter grid size", 4)
 
         self.Field_Size = field_size
 
         # Max ship number is 60% of total grid size
         max_ship_qt = int((field_size ** 2) * 0.6)
 
+        ship_msg = "\nEnter ships quantity"
+
         # Read the number of ships
-        self.Ships_Qt = self.get_valid_integer_input("\nEnter ships quantity", 1, max_ship_qt)
+        self.Ships_Qt = self.get_integer_input(ship_msg, 1, max_ship_qt)
 
         self.print_divider()
 
@@ -175,30 +177,33 @@ class BattleShip:
                 self.restart_game()
                 break
 
-    #Static methods section
+    # Static methods section
     @staticmethod
-    def get_valid_integer_input(prompt, min_value, max_value=None):
+    def get_integer_input(prompt, min_value, max_value=None):
         while True:
             try:
                 if max_value is not None:
-                    value = int(input(f"{prompt} (Min {min_value}, Max {max_value}): "))
+                    input_msg = f"{prompt} (Min {min_value}, Max {max_value}):"
+                    value = int(input(input_msg))
                     if value < min_value or value > max_value:
                         raise ValueError
                 else:
                     value = int(input(f"{prompt} (Min {min_value}): "))
                     if value < min_value:
                         raise ValueError
-                
                 return value
             except ValueError:
                 if max_value is not None:
-                    print(f"Please insert a valid number within {min_value}-{max_value}")
+                    print_msg = "Please insert a valid number within"
+                    print(f"{print_msg} {min_value}-{max_value}")
                 else:
-                    print(f"Please insert a valid number greater than {min_value}")
+                    print_msg = "Please insert a valid number greater than"
+                    print(f"{print_msg} {min_value}")
 
     @staticmethod
     def print_divider():
         print("-------------------------------------------------\n")
+
 
 battle = BattleShip()
 battle.play_game()
